@@ -1,0 +1,94 @@
+;; defsrc is still necessary, do not delete it!
+(defsrc)
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defvar
+  tap-time 50
+  hold-time 200
+)
+
+(defalias
+  ;; Generic action
+  main-action (layer-while-held main_mod)
+  second-action (layer-while-held second_mod)
+
+  ;; Key specific action
+  caps-action (tap-hold $tap-time $hold-time ralt (layer-while-held Caps)) 
+  space-action (tap-hold $tap-time $hold-time spc @main-action)
+)
+
+;; The first layer here is the main layer used when Kanata runs
+
+(deflayermap (hold-mod)
+  ;; Hold layer
+  caps @caps-action
+  spc @space-action
+  ralt @second-action  
+
+  ;; Individual keys
+  q (tap-hold $tap-time $hold-time q lmet)
+  w (tap-hold $tap-time $hold-time w lalt)
+  e (tap-hold $tap-time $hold-time e lsft)
+  f (tap-hold $tap-time $hold-time f lctl)
+  j (tap-hold $tap-time $hold-time j lctl)
+  i (tap-hold $tap-time $hold-time i lsft)
+  o (tap-hold $tap-time $hold-time o lalt)
+  p (tap-hold $tap-time $hold-time p lmet)
+  lsft (tap-hold $tap-time $hold-time \ lsft)
+)
+
+(deflayermap (base)
+  caps @caps-action
+  ralt @main-action
+)
+
+(deflayermap (pure)
+  caps (tap-hold $tap-time $hold-time caps (layer-while-held Caps)) 
+)
+
+(deflayermap (Caps)
+  1 (layer-switch pure)
+  2 (layer-switch base)
+  3 (layer-switch hold-mod)
+  r lrld
+)
+
+(deflayermap (main_mod)
+  f enter
+  e esc
+  j left
+  i up
+  o right
+  k down
+  r \
+  u 6
+  m bspc
+  c del
+  caps caps
+  1 f1
+  2 f2
+  3 f3
+  4 f4
+  5 f5
+  6 f6
+  7 f7
+  8 f8
+  9 f9
+  0 f10
+  - f11
+  = f12
+  ` menu
+)
+
+(deflayermap (second_mod) 
+  ] next
+  [ prev
+  ' pp
+  = volu
+  - voldwn
+  p bru
+  l brdwn
+)

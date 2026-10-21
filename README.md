@@ -1,2 +1,3 @@
-# pc-config
- Configuration files for my linux PC
+# Introduction
+
+Configuration files for my linux PC

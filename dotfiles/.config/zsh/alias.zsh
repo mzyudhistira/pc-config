@@ -1,0 +1,8 @@
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias cat='bat'
+alias ls='eza'
+alias ll='eza -lah --icons --group-directories-first --git --git-ignore'
+alias sc='sesh connect $(sesh list | fzf)'
+alias v='nvim'
+alias activate='source .venv/bin/activate'
+alias code='flatpak run com.vscodium.codium'
