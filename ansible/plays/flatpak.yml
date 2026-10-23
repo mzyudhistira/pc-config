@@ -1,0 +1,36 @@
+---
+# Setup Flatpak and install some packages
+- name: Install Flatpak
+  ansible.builtin.package:
+    name: flatpak
+    state: present
+
+- name: Install GNOME Flatpak plugin
+  ansible.builtin.package:
+    name: gnome-software-plugin-flatpak
+    state: present
+  when: desktop_environment | default('gnome') == 'gnome'
+
+- name: Add Flathub repository
+  community.general.flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: system
+    state: present
+
+- name: Install Flatpak packages
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+    remote: flathub
+  loop:
+    - ca.desrt.dconf-editor
+    - com.github.tchx84.Flatseal
+    - com.mattjakeman.ExtensionManager
+    - it.mijorus.gearlever
+    - com.obsproject.Studio
+    - io.gitlab.librewolf-community
+    - org.mozilla.thunderbird_esr
+    - md.obsidian.Obsidian
+    - org.zotero.Zotero
+    - org.localsend.localsend_app

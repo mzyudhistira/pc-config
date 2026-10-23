@@ -1,0 +1,7 @@
+- name: Setup Work computer
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+  - ansible.builtin.import_tasks: plays/apt.yml
+  - ansible.builtin.import_tasks: plays/flatpak.yml

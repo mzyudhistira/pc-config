@@ -1,0 +1,11 @@
+---
+# Install apt packages
+- name: Install APT packages
+  ansible.builtin.apt:
+    update_cache: true
+    pkg:
+      - kitty
+      - zsh
+      - build-essential
+      - git
+      - wget
