@@ -1,8 +1,14 @@
 return {
-  'folke/snacks.nvim',
+  "folke/snacks.nvim",
   keys = {
-    { "<leader>o",       LazyVim.pick("files"),                  desc = "Find Files (Root Dir)" },
-    { "<leader><space>", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>o", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+    {
+      "<leader><space>",
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = "Buffers",
+    },
   },
   opts = {
     picker = {
@@ -22,7 +28,11 @@ return {
       matcher = {
         frecency = true,
       },
-
+      sources = {
+        files = { hidden = true },
+        grep = { hidden = true },
+        explorer = { hidden = true },
+      },
     },
-  }
+  },
 }
