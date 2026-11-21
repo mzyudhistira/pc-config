@@ -2,6 +2,18 @@
   hosts: localhost
   connection: local
   become: true
+
+  vars:
+    hostname: imac
+
   tasks:
   - ansible.builtin.import_tasks: plays/apt.yml
   - ansible.builtin.import_tasks: plays/flatpak.yml
+  - ansible.builtin.import_tasks: plays/dns.yml
+
+  handlers:
+    - name: Restart resolved
+      # DNS Setting
+      ansible.builtin.systemd_service:
+        name: systemd-resolved
+        state: restarted
